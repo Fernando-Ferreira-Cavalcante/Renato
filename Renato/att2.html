@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function validarNome(nome) {
+
+    let partes = nome.trim().split(" ").filter(p => p !== "");
+    return partes.length >= 2;
+}
+
+function obterSobrenome(nome) {
+    let partes = nome.trim().split(" ").filter(p => p !== "");
+    return partes[partes.length - 1].toLowerCase();
+}
+
+function contarVogais(nome) {
+    let vogais = nome.match(/[aeiouAEIOU]/g);
+    let qtd = vogais ? vogais.length : 0;
+    return qtd.toString().padStart(2, "0");
+}
+
+// Programa principal
+let nome = prompt("Digite o nome completo do aluno:");
+
+if (validarNome(nome)) {
+    let senha = obterSobrenome(nome) + contarVogais(nome);
+    console.log("Senha inicial:", senha);
+} else {
+    console.log("Erro: Digite o nome completo (nome e sobrenome).");
+}
+    </script>
+</body>
+</html>

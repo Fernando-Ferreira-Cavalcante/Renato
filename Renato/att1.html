@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function retornarTracos(nome) {
+    let tracos = "";
+    for (let i = 0; i < nome.length; i++) {
+        if (nome[i] === " ") {
+            tracos += " ";
+        } else {
+            tracos += "-";
+        }
+    }
+    return tracos;
+}
+
+function categorizarAluno(idade) {
+    if (idade <= 12) {
+        return "Infantil";
+    } else if (idade <= 18) {
+        return "Juvenil";
+    } else {
+        return "Adulto";
+    }
+}
+
+let nome = prompt("Digite o nome do atleta:");
+let idade = Number(prompt("Digite a idade do atleta:"));
+
+console.log(nome);
+console.log(retornarTracos(nome));
+console.log("Categoria:", categorizarAluno(idade));
+    </script>
+</body>
+</html>

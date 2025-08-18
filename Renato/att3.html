@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Desconto Veterinária</title>
+</head>
+<body>
+    <h2>Desconto Veterinária</h2>
+
+    <label>Preço da vacina (R$): </label>
+    <input type="number" id="preco" value="0"><br><br>
+
+    <label>Possui convênio?</label>
+    <select id="temConvenio" onchange="mostrarOpcoes()">
+        <option value="nao">Não</option>
+        <option value="sim">Sim</option>
+    </select><br><br>
+
+    <div id="opcoesConvenio" style="display:none;">
+        <label>Selecione o convênio:</label>
+        <select id="convenio">
+            <option value="amigo">Amigo dos Animais</option>
+            <option value="saude">Saúde Animal</option>
+        </select><br><br>
+    </div>
+
+    <button onclick="calcular()">Calcular</button>
+
+    <h3>Resultado</h3>
+    <p id="resultado"></p>
+
+    <script>
+        function mostrarOpcoes() {
+            let temConvenio = document.getElementById("temConvenio").value;
+            document.getElementById("opcoesConvenio").style.display = 
+                temConvenio === "sim" ? "block" : "none";
+        }
+
+        function calcularDesconto(valor, taxa) {
+            return valor * taxa;
+        }
+
+        function calcular() {
+            let preco = Number(document.getElementById("preco").value);
+            let temConvenio = document.getElementById("temConvenio").value;
+            let taxa = 0.1; // padrão sem convênio
+
+            if (temConvenio === "sim") {
+                let convenio = document.getElementById("convenio").value;
+                if (convenio === "amigo") {
+                    taxa = 0.2;
+                } else if (convenio === "saude") {
+                    taxa = 0.5;
+                }
+            }
+
+            let desconto = calcularDesconto(preco, taxa);
+            let total = preco - desconto;
+
+            document.getElementById("resultado").innerHTML =
+                "Desconto: R$ " + desconto.toFixed(2) + "<br>" +
+                "Total a Pagar: R$ " + total.toFixed(2);
+        }
+    </script>
+</body>
+</html>
