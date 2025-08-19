@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let janela = Array(24).fill(0)   // 0 = livre
+let corredor = Array(24).fill(0) // 1 = ocupada
+
+function onibusLotado() {
+  return janela.every(p => p === 1) && corredor.every(p => p === 1)
+}
+
+let opcao = 0
+while (opcao !== 3) {
+  opcao = parseInt(prompt("Menu:\n1 - Vender passagem\n2 - Mostrar mapa do ônibus\n3 - Encerrar"))
+
+  if (opcao === 1) {
+    if (onibusLotado()) {
+      alert("Ônibus lotado!")
+    } else {
+      let tipo = prompt("Digite J para Janela ou C para Corredor:").toUpperCase()
+      let num = parseInt(prompt("Digite o número da poltrona (1 a 24):")) - 1
+
+      if (num < 0 || num > 23) {
+        alert("Número de poltrona inválido.")
+      } else if (tipo === "J") {
+        if (janela[num] === 0) {
+          janela[num] = 1
+          alert(`Venda efetivada! Poltrona Janela ${num+1}`)
+        } else {
+          alert("Poltrona ocupada.")
+        }
+      } else if (tipo === "C") {
+        if (corredor[num] === 0) {
+          corredor[num] = 1
+          alert(`Venda efetivada! Poltrona Corredor ${num+1}`)
+        } else {
+          alert("Poltrona ocupada.")
+        }
+      } else {
+        alert("Opção inválida.")
+      }
+    }
+  } 
+  
+  else if (opcao === 2) {
+    let mapa = "MAPA DE OCUPAÇÃO\n\nJANELA     CORREDOR\n"
+    for (let i = 0; i < 24; i++) {
+      mapa += `${i+1}- ${janela[i] === 1 ? "Ocupada" : "Livre"}   ${i+1}- ${corredor[i] === 1 ? "Ocupada" : "Livre"}\n`
+    }
+    alert(mapa)
+  }
+}
+
+alert("Programa encerrado.")
+    </script>
+</body>
+</html>

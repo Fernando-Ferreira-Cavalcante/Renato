@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let vetor = []
+
+         for(let i = 0;i<5;i++){
+            let contar = Number(prompt(`Digite o primeiro ${i+1}º número`))
+            vetor.push(contar)
+         }
+        let inicio = parseFloat(prompt("Insira um número para começar \n0- para fechar programa \n1- para exibir 5 números reais na ordem que você passar \n2- mostra os número na ordem inversa"))
+
+        if(inicio ===1){
+            console.log(vetor)
+
+       }
+       else if (inicio === 2) {
+    console.log(vetor.reverse())
+
+       } 
+        else{
+            console.log("programa encerrado")
+        }      
+    </script>
+</body>
+</html>

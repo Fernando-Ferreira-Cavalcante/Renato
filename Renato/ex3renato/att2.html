@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let preco = [12.5,30,15,20,25,10,50,8,5,40] 
+let qtd =    [4,1,3,2,5,6,1,7,8,2] 
+
+let totalGeral = 0
+let maisVendido = qtd[0] * preco[0]
+let posicao = 0
+
+for(let i=0;i<10;i++){
+    let total = qtd[i] * preco[i]
+    console.log(`Produto ${i+1}: Qtde=${qtd[i]} Unit=${preco[i].toFixed(2)} Total=${total.toFixed(2)}`)
+    totalGeral += total
+    if(total > maisVendido){
+        maisVendido = total
+        posicao = i
+    }
+}
+
+let comissao = totalGeral * 0.05
+
+console.log("Total vendido: " + totalGeral.toFixed(2))
+console.log("Comissão (5%): " + comissao.toFixed(2))
+console.log("Mais vendido: " + maisVendido.toFixed(2) + " (posição " + (posicao+1) + ")")
+       
+
+
+
+    </script>
+</body>
+</html>

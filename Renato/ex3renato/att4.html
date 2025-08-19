@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>let contas = []
+let saldos = []
+
+// cadastra 10 contas e saldos
+for (let i = 0; i < 10; i++) {
+  let codigo
+  do {
+    codigo = parseInt(prompt(`Digite o código da conta ${i+1}:`))
+  } while (contas.includes(codigo)) // garante que não repete
+  contas.push(codigo)
+
+  let saldo = parseFloat(prompt(`Digite o saldo inicial da conta ${codigo}:`))
+  saldos.push(saldo)
+}
+
+let opcao = 0
+while (opcao !== 4) {
+  opcao = parseInt(prompt(
+    "Menu:\n1 - Efetuar depósito\n2 - Efetuar saque\n3 - Consultar ativo bancário\n4 - Finalizar"
+  ))
+
+  if (opcao === 1) {
+    // depósito
+    let codigo = parseInt(prompt("Digite o código da conta:"))
+    let valor = parseFloat(prompt("Digite o valor do depósito:"))
+    let indice = contas.indexOf(codigo)
+
+    if (indice === -1) {
+      alert("Conta não encontrada.")
+    } else {
+      saldos[indice] += valor
+      alert(`Depósito realizado!\nSaldo atual da conta ${codigo}: R$ ${saldos[indice].toFixed(2)}`)
+    }
+
+  } else if (opcao === 2) {
+    // saque
+    let codigo = parseInt(prompt("Digite o código da conta:"))
+    let valor = parseFloat(prompt("Digite o valor do saque:"))
+    let indice = contas.indexOf(codigo)
+
+    if (indice === -1) {
+      alert("Conta não encontrada.")
+    } else if (saldos[indice] < valor) {
+      alert("Saldo insuficiente.")
+    } else {
+      saldos[indice] -= valor
+      alert(`Saque realizado!\nSaldo atual da conta ${codigo}: R$ ${saldos[indice].toFixed(2)}`)
+    }
+
+  } else if (opcao === 3) {
+    // ativo bancário
+    let total = 0
+    for (let i = 0; i < saldos.length; i++) {
+      total += saldos[i]
+    }
+    alert("Ativo bancário total: R$ " + total.toFixed(2))
+  }
+}
+
+alert("Programa finalizado.")
+    </script>
+</body>
+</html>
